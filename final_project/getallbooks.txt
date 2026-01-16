@@ -1,5 +1,3 @@
-theia@theia-thejanashe
-theia@theia-thejanashetheia@theia-thejanasheha:/home/project$ ct:5
 url http://localhost:5000/
 {
     "1": {
