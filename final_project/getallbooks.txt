@@ -1,4 +1,4 @@
-url http://localhost:5000/
+curl http://localhost:5000/
 {
     "1": {
         "author": "Chinua Achebe",
@@ -50,5 +50,4 @@ url http://localhost:5000/
         "title": "Molloy, Malone Dies, The Unnamable, the trilogy",
         "reviews": {}
     }
-}theia@theia-thejanashe
-ha:/home/project$ 
+}
