@@ -94,23 +94,35 @@ public_users.get('/author/:author', (req, res) => {
   });
   
 
-// Get all books based on title
-public_users.get('/title/:title', function (req, res) {
+// Task 13: Get book details by title using Promises
+public_users.get('/title/:title', (req, res) => {
     const title = req.params.title;
-    let result = {};
   
-    Object.keys(books).forEach((isbn) => {
-      if (books[isbn].title.toLowerCase() === title.toLowerCase()) {
-        result[isbn] = books[isbn];
+    const getBooksByTitle = new Promise((resolve, reject) => {
+      let result = {};
+  
+      Object.keys(books).forEach((isbn) => {
+        if (books[isbn].title.toLowerCase() === title.toLowerCase()) {
+          result[isbn] = books[isbn];
+        }
+      });
+  
+      if (Object.keys(result).length > 0) {
+        resolve(result);
+      } else {
+        reject("No books found with this title");
       }
     });
   
-    if (Object.keys(result).length > 0) {
-      return res.status(200).send(JSON.stringify(result, null, 4));
-    } else {
-      return res.status(404).json({ message: "No books found with this title" });
-    }
+    getBooksByTitle
+      .then((booksByTitle) => {
+        res.status(200).send(JSON.stringify(booksByTitle, null, 4));
+      })
+      .catch((error) => {
+        res.status(404).json({ message: error });
+      });
   });
+  
   
 
 // Get book review
